@@ -287,9 +287,9 @@ Static LoopList() As Long
          Select Case Mid$(Code, InstructionP, 1)
             Case "["
                If SafeArrayGetDim(LoopStack()) = 0 Then
-                  ReDim LoopStack(0) As Long
+                  ReDim LoopStack(0 To 0) As Long
                Else
-                  ReDim Preserve LoopStack(UBound(LoopStack) + 1) As Long
+                  ReDim Preserve LoopStack(LBound(LoopStack) To UBound(LoopStack) + 1) As Long
                End If
                
                LoopStack(UBound(LoopStack)) = InstructionP
@@ -303,7 +303,7 @@ Static LoopList() As Long
                   If UBound(LoopStack()) < 1 Then
                      Erase LoopStack()
                   Else
-                     ReDim Preserve LoopStack(UBound(LoopStack) - 1) As Long
+                     ReDim Preserve LoopStack(LBound(LoopStack) To UBound(LoopStack) - 1) As Long
                   End If
                End If
          End Select
